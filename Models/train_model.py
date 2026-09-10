@@ -9,9 +9,7 @@ from sklearn.model_selection import train_test_split
 from sklearn.ensemble import RandomForestClassifier
 from sklearn.metrics import accuracy_score, classification_report, confusion_matrix
 
-# ---------------------------------------------------------------------------
-# Path resolution — works whether run from Models/ or imported from project root
-# ---------------------------------------------------------------------------
+
 _THIS_DIR = os.path.dirname(os.path.abspath(__file__))
 _PROJECT_ROOT = os.path.normpath(os.path.join(_THIS_DIR, ".."))
 
@@ -24,28 +22,9 @@ _DEFAULT_LE_PATH = os.path.join(_PROJECT_ROOT, "Models", "label_encoder.pkl")
 FEATURE_NAMES = ["N", "P", "K", "temperature", "humidity", "ph", "rainfall"]
 
 
-# ---------------------------------------------------------------------------
-# Public API
-# ---------------------------------------------------------------------------
+
 
 def train_and_save_model(data_path=None, model_path=None, le_path=None):
-    """
-    Train a Random Forest classifier on the processed crop dataset and save it.
-
-    Parameters
-    ----------
-    data_path : str, optional
-        Path to processed CSV. Defaults to Dataset/Processed/processed_crop_data.csv.
-    model_path : str, optional
-        Where to save the trained model .pkl. Defaults to Models/trained_model.pkl.
-    le_path : str, optional
-        Where to save the label encoder .pkl. Defaults to Models/label_encoder.pkl.
-
-    Returns
-    -------
-    tuple
-        (model, label_encoder, feature_names)
-    """
     if data_path is None:
         data_path = _DEFAULT_DATA_PATH
     if model_path is None:
@@ -136,21 +115,7 @@ def train_and_save_model(data_path=None, model_path=None, le_path=None):
 
 
 def load_model(model_path=None, le_path=None):
-    """
-    Load a previously trained model and label encoder from disk.
-
-    Parameters
-    ----------
-    model_path : str, optional
-        Path to trained_model.pkl. Defaults to Models/trained_model.pkl.
-    le_path : str, optional
-        Path to label_encoder.pkl. Defaults to Models/label_encoder.pkl.
-
-    Returns
-    -------
-    tuple
-        (model, label_encoder, feature_names)
-    """
+    
     if model_path is None:
         model_path = _DEFAULT_MODEL_PATH
     if le_path is None:
@@ -175,31 +140,7 @@ def load_model(model_path=None, le_path=None):
 
 
 def predict_crop(model, le, N, P, K, temperature, humidity, ph, rainfall):
-    """
-    Predict the recommended crop for a given set of soil/climate parameters.
-
-    Parameters
-    ----------
-    model : sklearn estimator
-        Trained Random Forest model.
-    le : LabelEncoder
-        Fitted label encoder.
-    N, P, K : float
-        Nitrogen, Phosphorus, Potassium content in soil.
-    temperature : float
-        Temperature in degrees Celsius.
-    humidity : float
-        Relative humidity in %.
-    ph : float
-        Soil pH value.
-    rainfall : float
-        Annual rainfall in mm.
-
-    Returns
-    -------
-    str
-        Predicted crop name.
-    """
+   
     import numpy as np
 
     input_data = pd.DataFrame(
@@ -211,9 +152,8 @@ def predict_crop(model, le, N, P, K, temperature, humidity, ph, rainfall):
     return crop
 
 
-# ---------------------------------------------------------------------------
-# Standalone execution — trains and saves the model
-# ---------------------------------------------------------------------------
+# Standalone execution
+
 if __name__ == "__main__":
     model, le, feature_names = train_and_save_model()
 
