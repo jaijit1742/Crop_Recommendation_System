@@ -1,0 +1,37 @@
+# Root-level .gitignore — Crop_Recommendation_System
+
+# Python bytecode
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+
+# Virtual environments
+.venv/
+venv/
+env/
+
+# Environment files
+.env
+.env.*
+!.env.example
+
+# Node
+node_modules/
+
+# Agent workspace files
+.agents/
+
+# Build outputs
+dist/
+build/
+
+# Jupyter checkpoints
+.ipynb_checkpoints/
+
+# OS artefacts
+.DS_Store
+Thumbs.db
+
+# Model binaries (optional — remove if you want to track them)
+# *.pkl

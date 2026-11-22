@@ -1,0 +1,35 @@
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap');
+@import "tailwindcss";
+
+@theme {
+  --color-forest: #163A24;
+  --color-primary: #2E7D32;
+  --color-leaf: #4F8F3A;
+  --color-sage: #A8C59A;
+  --color-cream: #F7F5EA;
+  --color-warm: #FCFCF8;
+  --color-soil: #8B6B45;
+  --color-golden: #D8A83E;
+  --color-dark: #182019;
+  --color-muted: #667064;
+  --font-sans: "Inter", sans-serif;
+}
+
+body {
+  background-color: var(--color-warm);
+  color: var(--color-dark);
+  font-family: var(--font-sans);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+
+/* Hide number input spinner arrows */
+input[type="number"]::-webkit-inner-spin-button,
+input[type="number"]::-webkit-outer-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+
+input[type="number"] {
+  -moz-appearance: textfield;
+}
